@@ -14,8 +14,6 @@ namespace MHWBackup
     {
         public BackupManager BackupManager;
 
-        public Setting Setting;
-
         private Backup _currentBackup;
 
         public BackupMain()

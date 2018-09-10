@@ -25,6 +25,11 @@ namespace MHWBackup
             return Regex.IsMatch(dirName, "(^[0-9]*$)");
         }
 
+        public static string GetDirName(this string dirPath)
+        {
+            return dirPath.Substring(dirPath.LastIndexOf('\\') + 1);
+        }
+
         public static Dictionary<string, string> ToGameDictionary(this string baseDir)
         {
             var gd = new Dictionary<string, string>();

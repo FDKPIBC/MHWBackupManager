@@ -8,10 +8,12 @@ namespace MHWBackup
 {
     public class SteamUser
     {
+        public string SteamId { get; set; }
+
         public string UserName { get; set; }
 
         public string UserBaseDir { get; set; }
 
-        public Dictionary<string, string> GameDir {get;set;}
+        public Dictionary<string, string> GameDir { get; set; }
     }
 }

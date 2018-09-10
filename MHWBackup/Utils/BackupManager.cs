@@ -15,8 +15,6 @@ namespace MHWBackup
     {
         private SteamUserManager _steamUserManager;
 
-        public Setting Setting { get; set; }
-
         public SteamUser CurrentUser { get; private set; }
 
         public static string BackupPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "backup");
@@ -29,7 +27,6 @@ namespace MHWBackup
         public BackupManager()
         {
             _steamUserManager = new SteamUserManager();
-            Setting = Setting.LoadConfig();
             if (_steamUserManager.SteamUsers.Count > 1)
             {
                 using (var cpForm = new ChoosePlayer(_steamUserManager))
@@ -64,7 +61,7 @@ namespace MHWBackup
             }
             var historyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "history.conf");
             if (!File.Exists(historyPath)) return;
-            Backups = JsonConvert.DeserializeObject<List<Backup>>(File.ReadAllText(historyPath));
+            Backups = JsonConvert.DeserializeObject<List<Backup>>(File.ReadAllText(historyPath)).Where(t => t.SteamId == CurrentUser.SteamId).ToList();
         }
 
         public Backup CreateNewBackup()
@@ -82,6 +79,7 @@ namespace MHWBackup
             var backup = new Backup();
             backup.CreateTime = DateTime.Now;
             backup.SteamName = CurrentUser.UserName;
+            backup.SteamId = CurrentUser.SteamId;
             using (var zip = new ZipFile())
             {
                 zip.AddDirectory(gamepath);

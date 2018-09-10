@@ -78,8 +78,8 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Backup.cs" />
-    <Compile Include="BackupManager.cs" />
+    <Compile Include="Utils\Backup.cs" />
+    <Compile Include="Utils\BackupManager.cs" />
     <Compile Include="BackupMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,12 +92,12 @@
     <Compile Include="ChoosePlayer.Designer.cs">
       <DependentUpon>ChoosePlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtendHelper.cs" />
+    <Compile Include="Utils\ExtendHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setting.cs" />
-    <Compile Include="SteamUser.cs" />
-    <Compile Include="SteamUserManager.cs" />
+    <Compile Include="Utils\Setting.cs" />
+    <Compile Include="Utils\SteamUser.cs" />
+    <Compile Include="Utils\SteamUserManager.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>

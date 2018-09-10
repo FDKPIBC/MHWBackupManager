@@ -58,6 +58,7 @@ namespace MHWBackup
                 var vdf = VdfConvert.Deserialize(File.ReadAllText(config));
                 SteamUsers.Add(new SteamUser()
                 {
+                    SteamId = dir.GetDirName(),
                     UserName = vdf.Value["friends"].Value<string>("PersonaName"),
                     UserBaseDir = dir,
                     GameDir = dir.ToGameDictionary()

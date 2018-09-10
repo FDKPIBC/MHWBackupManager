@@ -11,6 +11,8 @@ namespace MHWBackup
 {
     static class Program
     {
+        public static Setting Setting { get; set; }
+
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -19,8 +21,9 @@ namespace MHWBackup
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Setting = Setting.LoadConfig();
             var backupMain = new BackupMain();
-            if (!CheckShortcutExist()&&backupMain.BackupManager.Setting.IsFirstLaunch)
+            if (!CheckShortcutExist()&&Program.Setting.IsFirstLaunch)
             {
                 if (MessageBox.Show("猛汉您的桌面未找到本程序的快捷方式,是否创建以提升狩猎体验?", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -28,13 +31,13 @@ namespace MHWBackup
                 }
                 else
                 {
-                    backupMain.BackupManager.Setting.IsFirstLaunch = false;
+                    Setting.IsFirstLaunch = false;
                 }
             }
             Application.ApplicationExit += (sender, e) =>
             {
                 backupMain.BackupManager.SaveBackupHistory();
-                backupMain.BackupManager.Setting.SaveConfig();
+                Setting.SaveConfig();
             };
             if (backupMain.BackupManager.CurrentUser != null)
             {
