@@ -1,9 +1,11 @@
 ﻿using IWshRuntimeLibrary;
+using MHWBackup.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,6 +24,11 @@ namespace MHWBackup
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Setting = Setting.LoadConfig();
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            //var questmanager = new QuestManager();
+            //questmanager.LoadQuest();
             var backupMain = new BackupMain();
             if (!CheckShortcutExist()&&Program.Setting.IsFirstLaunch)
             {
@@ -45,7 +52,7 @@ namespace MHWBackup
             }
         }
 
-        static bool CheckShortcutExist()
+        public static bool CheckShortcutExist()
         {
             String exePath = Process.GetCurrentProcess().MainModule.FileName;
             IWshShell shell = new WshShell();
@@ -64,7 +71,7 @@ namespace MHWBackup
         /// 创建桌面快捷方式
         /// 借鉴了某位老哥的代码地址:https://blog.csdn.net/luwq168/article/details/78969446
         /// </summary>
-        static void CreateShortcut()
+        public static void CreateShortcut()
         {
             String shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "猛汉王存档备份工具.lnk");
             if (!System.IO.File.Exists(shortcutPath))
@@ -81,6 +88,33 @@ namespace MHWBackup
                 shortcut.WindowStyle = 1;
                 shortcut.Save();
             }
+        }
+
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            WriteExceptionLog(e.Exception);
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+            if (ex != null) WriteExceptionLog(ex);
+        }
+
+        static void WriteExceptionLog(Exception ex)
+        {
+            if (ex == null) return;
+            MessageBox.Show("程序运行异常,即将关闭,详情请查看错误日志!");
+            var sb = new StringBuilder();
+            sb.AppendLine($"-----------{DateTime.Now:yyyy/MM/dd hh:mm:ss}----------");
+            sb.AppendLine($"StackTrace:{ex.InnerException?.StackTrace ?? ex.StackTrace}");
+            sb.AppendLine();
+            sb.AppendLine($"Message:{ex.InnerException?.Message ?? ex.Message}");
+            sb.AppendLine($"------------------------------------------");
+            if (!Setting.LogPath.PathIsExist()) Directory.CreateDirectory(Setting.LogPath);
+            var exlogpath = Path.Combine(Setting.LogPath, DateTime.Now.ToString("yyyyMMdd") + ".exception");
+            System.IO.File.AppendAllText(exlogpath, sb.ToString());
+            Application.Exit();
         }
     }
 }

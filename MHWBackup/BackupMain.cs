@@ -107,5 +107,16 @@ namespace MHWBackup
         {
             new About().ShowDialog();
         }
+
+        private void 修复桌面快捷方式ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.CreateShortcut();
+        }
+
+        private void 活动表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var quest = new QuestForm();
+            quest.Show();
+        }
     }
 }

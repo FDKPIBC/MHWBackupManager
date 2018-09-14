@@ -12,6 +12,8 @@ namespace MHWBackup
     {
         public bool IsFirstLaunch { get; set; } = true;
 
+        public string LogPath { get; set; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"log");
+
         public Setting()
         {
 

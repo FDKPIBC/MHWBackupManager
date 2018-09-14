@@ -30,6 +30,16 @@ namespace MHWBackup
             return dirPath.Substring(dirPath.LastIndexOf('\\') + 1);
         }
 
+        public static string ReplaceAndTrim(this string str,string replaceStr,string replaceTo)
+        {
+            return str.Replace(replaceStr, replaceTo).Replace("\n","").Trim();
+        }
+
+        public static string ReplaceAndTrim(this string str)
+        {
+            return str.Replace("\n", "").Trim();
+        }
+
         public static Dictionary<string, string> ToGameDictionary(this string baseDir)
         {
             var gd = new Dictionary<string, string>();

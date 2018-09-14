@@ -15,6 +15,7 @@ namespace MHWBackup
         public About()
         {
             InitializeComponent();
+            richTextBox1.LoadFile("ChangeLog.rtf");
         }
     }
 }

@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.修复桌面快捷方式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labCreateTime = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.btnReduction = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.lbHistory = new System.Windows.Forms.ListBox();
+            this.活动表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +53,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiBackup,
+            this.活动表ToolStripMenuItem,
             this.设置ToolStripMenuItem,
             this.关于ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -68,10 +71,18 @@
             // 
             // 设置ToolStripMenuItem
             // 
+            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.修复桌面快捷方式ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.设置ToolStripMenuItem.Text = "设置";
-            this.设置ToolStripMenuItem.Visible = false;
+            // 
+            // 修复桌面快捷方式ToolStripMenuItem
+            // 
+            this.修复桌面快捷方式ToolStripMenuItem.Name = "修复桌面快捷方式ToolStripMenuItem";
+            this.修复桌面快捷方式ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.修复桌面快捷方式ToolStripMenuItem.Text = "修复桌面快捷方式";
+            this.修复桌面快捷方式ToolStripMenuItem.Click += new System.EventHandler(this.修复桌面快捷方式ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
@@ -141,7 +152,6 @@
             this.labSteamId.TabIndex = 1;
             this.labSteamId.Text = "12435236";
             this.labSteamId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labSteamId.Visible = false;
             // 
             // labHash
             // 
@@ -165,7 +175,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "SteamId";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Visible = false;
             // 
             // label3
             // 
@@ -211,6 +220,13 @@
             this.lbHistory.TabIndex = 3;
             this.lbHistory.SelectedIndexChanged += new System.EventHandler(this.lbHistory_SelectedIndexChanged);
             // 
+            // 活动表ToolStripMenuItem
+            // 
+            this.活动表ToolStripMenuItem.Name = "活动表ToolStripMenuItem";
+            this.活动表ToolStripMenuItem.Size = new System.Drawing.Size(56, 21);
+            this.活动表ToolStripMenuItem.Text = "活动表";
+            this.活动表ToolStripMenuItem.Click += new System.EventHandler(this.活动表ToolStripMenuItem_Click);
+            // 
             // BackupMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -250,6 +266,8 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 修复桌面快捷方式ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 活动表ToolStripMenuItem;
     }
 }
 

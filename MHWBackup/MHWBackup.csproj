@@ -56,6 +56,9 @@
     <Reference Include="Gameloop.Vdf, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Gameloop.Vdf.0.5.0\lib\net45\Gameloop.Vdf.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.8.7.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.8.7\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -78,6 +81,18 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuestForm.Designer.cs">
+      <DependentUpon>QuestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuestItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QuestItem.Designer.cs">
+      <DependentUpon>QuestItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Backup.cs" />
     <Compile Include="Utils\BackupManager.cs" />
     <Compile Include="BackupMain.cs">
@@ -95,6 +110,9 @@
     <Compile Include="Utils\ExtendHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\HttpHelper.cs" />
+    <Compile Include="Utils\Quest.cs" />
+    <Compile Include="Utils\QuestManager.cs" />
     <Compile Include="Utils\Setting.cs" />
     <Compile Include="Utils\SteamUser.cs" />
     <Compile Include="Utils\SteamUserManager.cs" />
@@ -107,6 +125,12 @@
     <EmbeddedResource Include="ChoosePlayer.resx">
       <DependentUpon>ChoosePlayer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuestForm.resx">
+      <DependentUpon>QuestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuestItem.resx">
+      <DependentUpon>QuestItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -116,6 +140,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ChangeLog.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
