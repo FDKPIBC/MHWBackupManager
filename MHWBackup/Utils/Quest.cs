@@ -24,6 +24,11 @@ namespace MHWBackup.Utils
         public string Image { get; set; }
 
         /// <summary>
+        /// 图片缓存
+        /// </summary>
+        public string CacheImage { get; set; }
+
+        /// <summary>
         /// 内容
         /// </summary>
         public string Content { get; set; }

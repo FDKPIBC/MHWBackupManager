@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using File = System.IO.File;
 
 namespace MHWBackup
 {
@@ -27,8 +28,6 @@ namespace MHWBackup
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            //var questmanager = new QuestManager();
-            //questmanager.LoadQuest();
             var backupMain = new BackupMain();
             if (!CheckShortcutExist()&&Program.Setting.IsFirstLaunch)
             {
@@ -73,10 +72,10 @@ namespace MHWBackup
         /// </summary>
         public static void CreateShortcut()
         {
-            String shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "猛汉王存档备份工具.lnk");
-            if (!System.IO.File.Exists(shortcutPath))
+            var shortcutPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "猛汉王存档备份工具.lnk");
+            if (!File.Exists(shortcutPath))
             {
-                String exePath = Process.GetCurrentProcess().MainModule.FileName;
+                var exePath = Process.GetCurrentProcess().MainModule.FileName;
                 IWshShell shell = new WshShell();
                 if (CheckShortcutExist()) return;
                 WshShortcut shortcut = (WshShortcut)shell.CreateShortcut(shortcutPath);

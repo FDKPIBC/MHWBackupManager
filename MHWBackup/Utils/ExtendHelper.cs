@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace MHWBackup
 {
@@ -50,6 +52,19 @@ namespace MHWBackup
                 gd.Add(dirName,dir);
             }
             return gd;
+        }
+
+        public static string GetSHA1(this string path)
+        {
+            if (!File.Exists(path)) return string.Empty;
+            using (FileStream file = new FileStream(path, FileMode.Open))
+            {
+                SHA1 sha1 = new SHA1CryptoServiceProvider();
+                var shaByte = sha1.ComputeHash(file);
+                var result = string.Join("",shaByte.Select(t => t.ToString("x2")));
+                return result.ToUpper();
+            }
+
         }
     }
 }

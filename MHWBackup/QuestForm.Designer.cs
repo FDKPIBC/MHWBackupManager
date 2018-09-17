@@ -39,14 +39,14 @@
             this.flpNews.AutoScroll = true;
             this.flpNews.Location = new System.Drawing.Point(13, 13);
             this.flpNews.Name = "flpNews";
-            this.flpNews.Size = new System.Drawing.Size(509, 336);
+            this.flpNews.Size = new System.Drawing.Size(509, 536);
             this.flpNews.TabIndex = 0;
             // 
             // QuestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 361);
+            this.ClientSize = new System.Drawing.Size(534, 561);
             this.Controls.Add(this.flpNews);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "QuestForm";

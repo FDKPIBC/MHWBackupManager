@@ -54,7 +54,7 @@ namespace MHWBackup
                 RefreshListBox();
             }
             labSteamId.Text = _currentBackup.SteamId;
-            labHash.Text = _currentBackup.FileHash;
+            labHash.Text = _currentBackup.SHA1;
             labCreateTime.Text = _currentBackup.CreateTime.ToString("yyyy年MM月dd日 hh:mm");
             tableLayoutPanel1.Visible = true;
         }
@@ -62,13 +62,19 @@ namespace MHWBackup
         private void lbHistory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lbHistory.SelectedIndex < 0) return;
-            _currentBackup = BackupManager.Backups.FirstOrDefault(t => t.FileHash == lbHistory.SelectedItem.ToString());
+            var value = (KeyValuePair<string, string>)lbHistory.SelectedItem;
+            _currentBackup = BackupManager.Backups.FirstOrDefault(t => t.SHA1 == value.Key);
             ReloadLayout(false);
         }
 
         private void tsmiBackup_Click(object sender, EventArgs e)
         {
-            _currentBackup = BackupManager.CreateNewBackup();
+            var newBackup = BackupManager.CreateNewBackup();
+            if (newBackup == null)
+            {
+                return;
+            }
+            _currentBackup = newBackup;
             ReloadLayout();
         }
 
@@ -84,8 +90,10 @@ namespace MHWBackup
             lbHistory.Items.Clear();
             foreach (var backup in BackupManager.Backups)
             {
-                lbHistory.Items.Add(backup.FileHash);
+                lbHistory.Items.Add(new KeyValuePair<string,string>(backup.SHA1,backup.CreateTime.ToString("yyyy-MM-dd hh:mm:ss")));
             }
+            lbHistory.DisplayMember = "Value";
+            lbHistory.ValueMember = "Key";
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -105,7 +113,7 @@ namespace MHWBackup
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new About().ShowDialog();
+            new About().Show();
         }
 
         private void 修复桌面快捷方式ToolStripMenuItem_Click(object sender, EventArgs e)

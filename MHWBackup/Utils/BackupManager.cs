@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Gameloop.Vdf;
 using Ionic.Zip;
+using MHWBackup.Utils;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -54,9 +56,11 @@ namespace MHWBackup
         public void LoadBackupHistory()
         {
             Backups = new List<Backup>();
-            if (!Directory.Exists(BackupPath))
+            var dir = new DirectoryInfo(BackupPath);
+            if (!dir.Exists)
             {
-                Directory.CreateDirectory(BackupPath);
+                dir.Create();
+                dir.Attributes = FileAttributes.Hidden;
                 return;
             }
             var historyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "history.conf");
@@ -80,10 +84,19 @@ namespace MHWBackup
             backup.CreateTime = DateTime.Now;
             backup.SteamName = CurrentUser.UserName;
             backup.SteamId = CurrentUser.SteamId;
+            if (!Comparison(gamepath, backup))
+            {
+                MessageBox.Show("您的文件已损坏,备份失败!");
+                return null;
+            }
+            if (Backups.Any(t=>t.SHA1 == backup.SHA1))
+            {
+                MessageBox.Show("该记录已备份!");
+                return null;
+            }
             using (var zip = new ZipFile())
             {
                 zip.AddDirectory(gamepath);
-                backup.FileHash = zip.GetHashCode().ToString();
                 backup.Path = Path.Combine(BackupPath, Guid.NewGuid().ToString() + ".zip");
                 zip.Save(backup.Path);
             }
@@ -109,10 +122,31 @@ namespace MHWBackup
             File.WriteAllText(historyPath,json);
         }
 
+        /// <summary>
+        /// 删除备份
+        /// </summary>
+        /// <param name="backup"></param>
         public void RemoveBackup(Backup backup)
         {
             File.Delete(backup.Path);
             Backups.Remove(backup);
+        }
+
+        public bool Comparison(string gamepath,Backup backup)
+        {
+            var savepath = Path.Combine(gamepath, "remotecache.vdf");
+            var SAVEDATA1000 = VdfConvert.Deserialize(File.ReadAllText(savepath)).Value["SAVEDATA1000"];
+            backup.Root = SAVEDATA1000.Value<string>("root");
+            backup.Size = SAVEDATA1000.Value<long>("size");
+            backup.LocalTime = new DateTime(SAVEDATA1000.Value<int>("localtime"));
+            backup.Time = new DateTime(SAVEDATA1000.Value<int>("time"));
+            backup.RemoteTime = new DateTime(SAVEDATA1000.Value<int>("remotetime"));
+            backup.SHA1 = SAVEDATA1000.Value<string>("sha").ToUpper();
+            backup.SyncState = SAVEDATA1000.Value<int>("syncstate");
+            backup.PersistState = SAVEDATA1000.Value<int>("persiststate");
+            backup.PlatformsToSync2 = SAVEDATA1000.Value<int>("platformstosync2");
+            var sha1 = Path.Combine(gamepath, "remote", "SAVEDATA1000").GetSHA1().ToUpper();
+            return sha1 == backup.SHA1;
         }
     }
 }

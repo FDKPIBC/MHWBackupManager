@@ -24,7 +24,8 @@ namespace MHWBackup
             labTitle.Text = quest.Title + " " + quest.LevelLimit;
             labQuestT.Text = quest.QuestTerms;
             labTime.Text = quest.TimeTerms;
-            labMap.Text = quest.QuestMap;
+            labMap.Text = "地图:" + quest.QuestMap;
+            labeRequest.Text = quest.QuestRequest;
             labContent.Text = quest.Content;
             pbImage.ImageLocation = quest.Image;
         }

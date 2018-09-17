@@ -10,10 +10,10 @@ namespace MHWBackup.Utils
     public class QuestManager
     {
         public List<Quest> Quests { get; private set; }
-    /// <summary>
-    /// 源html
-    /// </summary>
-    public string OriginHtml { get; private set; }
+        /// <summary>
+        /// 源html
+        /// </summary>
+        public string OriginHtml { get; private set; }
 
         private HtmlDocument _questDocument;
 
@@ -21,24 +21,22 @@ namespace MHWBackup.Utils
         {
             _questDocument = new HtmlDocument();
             Quests = new List<Quest>();
-            //LoadQuest();
         }
 
         public void LoadQuest()
         {
-            OriginHtml = HttpHelper.GetString("http://game.capcom.com/world/steam/hk/schedule.html");
+            OriginHtml = HttpHelper.Factory.Get("http://game.capcom.com/world/steam/hk/schedule.html").Result;
             _questDocument.LoadHtml(OriginHtml);
             var tableContainer = LoadQuestBaseNode();
             var tables = tableContainer.SelectNodes("table");
             foreach (HtmlNode table in tables)
             {
                 var type = table.GetAttributeValue("table2", "table") == "table2" ? "活動任務" : "挑戰任務";
-                Quests.AddRange(table.SelectNodes("tbody/tr").Select(t=> CreateQuest(t, type)));
+                Quests.AddRange(table.SelectNodes("tbody/tr").Select(t => CreateQuest(t, type)));
             }
-            //tableContainer.SelectSingleNode(@"/table[1]").SelectNodes(@"/tr").Select(CreateQuest);
         }
 
-        public Quest CreateQuest(HtmlNode node,string type)
+        public Quest CreateQuest(HtmlNode node, string type)
         {
             var quest = new Quest();
             //var nodeClass = node.GetAttributeValue("class", string.Empty);
@@ -50,7 +48,7 @@ namespace MHWBackup.Utils
             //{
 
             //}
-            quest.Image = node.SelectSingleNode(@"td[@class='image']/img").GetAttributeValue("src",string.Empty);
+            quest.Image = node.SelectSingleNode(@"td[@class='image']/img").GetAttributeValue("src", string.Empty);
             quest.LevelLimit = node.SelectSingleNode(@"td[@class='level']/span").InnerText;
             var questNode = node.SelectSingleNode(@"td[@class='quest']");
             quest.Title = questNode.SelectSingleNode(@"div[@class='title']/span").InnerText;
@@ -64,7 +62,5 @@ namespace MHWBackup.Utils
         }
 
         private HtmlNode LoadQuestBaseNode() => _questDocument.DocumentNode.SelectSingleNode(@"/html[1]/body[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[2]");
-
-        
     }
 }
