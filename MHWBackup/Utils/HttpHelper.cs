@@ -11,6 +11,9 @@ using System.Net.Http;
 
 namespace MHWBackup.Utils
 {
+    /// <summary>
+    /// 出自 https://github.com/dblleaf/Huaban/blob/dev/Huaban.UWP/Helper/HttpHelper.cs
+    /// </summary>
     public class HttpHelper
     {
         public static HttpHelper Factory

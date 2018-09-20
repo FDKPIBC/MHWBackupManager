@@ -138,9 +138,9 @@ namespace MHWBackup
             var SAVEDATA1000 = VdfConvert.Deserialize(File.ReadAllText(savepath)).Value["SAVEDATA1000"];
             backup.Root = SAVEDATA1000.Value<string>("root");
             backup.Size = SAVEDATA1000.Value<long>("size");
-            backup.LocalTime = new DateTime(SAVEDATA1000.Value<int>("localtime"));
-            backup.Time = new DateTime(SAVEDATA1000.Value<int>("time"));
-            backup.RemoteTime = new DateTime(SAVEDATA1000.Value<int>("remotetime"));
+            backup.LocalTime = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(SAVEDATA1000.Value<long>("localtime"));
+            backup.Time = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(SAVEDATA1000.Value<long>("time"));
+            backup.RemoteTime = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(SAVEDATA1000.Value<long>("remotetime"));
             backup.SHA1 = SAVEDATA1000.Value<string>("sha").ToUpper();
             backup.SyncState = SAVEDATA1000.Value<int>("syncstate");
             backup.PersistState = SAVEDATA1000.Value<int>("persiststate");

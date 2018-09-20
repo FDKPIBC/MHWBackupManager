@@ -44,7 +44,7 @@ namespace MHWBackup
             tableLayoutPanel1.Visible = false;
             labSteamId.Text =
             labHash.Text =
-            labCreateTime.Text = string.Empty;
+            labSaveTime.Text = string.Empty;
         }
 
         private void ReloadLayout(bool reloadList = true)
@@ -56,6 +56,7 @@ namespace MHWBackup
             labSteamId.Text = _currentBackup.SteamId;
             labHash.Text = _currentBackup.SHA1;
             labCreateTime.Text = _currentBackup.CreateTime.ToString("yyyy年MM月dd日 hh:mm");
+            labSaveTime.Text = _currentBackup.LocalTime.ToString("yyyy年MM月dd日 hh:mm");
             tableLayoutPanel1.Visible = true;
         }
 
