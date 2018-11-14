@@ -72,12 +72,12 @@ namespace MHWBackup
         {
             if (!CurrentUser.GameDir.TryGetValue("582010", out string gamepath))
             {
-                MessageBox.Show("您选择的steam账号应该不是一个猛汉吧!");
+                MessageBox.Show("您选择的steam账号并未开启猛汉之旅!");
                 return null;
             }
             if (!gamepath.PathIsExist())
             {
-                MessageBox.Show("您选择的steam账号应该不是一个猛汉吧!");
+                MessageBox.Show("您选择的steam账号并未开启猛汉之旅!");
                 return null;
             }
             var backup = new Backup();

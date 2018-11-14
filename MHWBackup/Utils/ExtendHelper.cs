@@ -32,16 +32,33 @@ namespace MHWBackup
             return dirPath.Substring(dirPath.LastIndexOf('\\') + 1);
         }
 
+        /// <summary>
+        /// 替换并去空(似乎部分时候无卵用?)
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="replaceStr"></param>
+        /// <param name="replaceTo"></param>
+        /// <returns></returns>
         public static string ReplaceAndTrim(this string str,string replaceStr,string replaceTo)
         {
-            return str.Replace(replaceStr, replaceTo).Replace("\n","").Trim();
+            return str.Replace(replaceStr, replaceTo).Replace("\n", "").Trim();
         }
 
+        /// <summary>
+        /// 替换并去空
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static string ReplaceAndTrim(this string str)
         {
             return str.Replace("\n", "").Trim();
         }
 
+        /// <summary>
+        /// 游戏目录
+        /// </summary>
+        /// <param name="baseDir"></param>
+        /// <returns></returns>
         public static Dictionary<string, string> ToGameDictionary(this string baseDir)
         {
             var gd = new Dictionary<string, string>();
@@ -54,6 +71,11 @@ namespace MHWBackup
             return gd;
         }
 
+        /// <summary>
+        /// 获取SHA1值
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static string GetSHA1(this string path)
         {
             if (!File.Exists(path)) return string.Empty;

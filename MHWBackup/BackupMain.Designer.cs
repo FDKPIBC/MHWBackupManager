@@ -36,17 +36,17 @@
             this.修复桌面快捷方式ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.labSaveTime = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.labSteamId = new System.Windows.Forms.Label();
             this.labHash = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnReduction = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.lbHistory = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labSaveTime = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labCreateTime = new System.Windows.Forms.Label();
+            this.lbHistory = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -126,37 +126,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 234);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(333, 257);
             this.tableLayoutPanel1.TabIndex = 2;
             this.tableLayoutPanel1.Visible = false;
-            // 
-            // labSaveTime
-            // 
-            this.labSaveTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.labSaveTime.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.labSaveTime, 2);
-            this.labSaveTime.Location = new System.Drawing.Point(64, 109);
-            this.labSaveTime.Name = "labSaveTime";
-            this.labSaveTime.Size = new System.Drawing.Size(266, 12);
-            this.labSaveTime.TabIndex = 5;
-            this.labSaveTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Location = new System.Drawing.Point(3, 109);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 12);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "存档时间";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labSteamId
             // 
             this.labSteamId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labSteamId.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labSteamId, 2);
-            this.labSteamId.Location = new System.Drawing.Point(64, 17);
+            this.labSteamId.Location = new System.Drawing.Point(64, 19);
             this.labSteamId.Name = "labSteamId";
             this.labSteamId.Size = new System.Drawing.Size(266, 12);
             this.labSteamId.TabIndex = 1;
@@ -167,7 +146,7 @@
             this.labHash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labHash.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labHash, 2);
-            this.labHash.Location = new System.Drawing.Point(64, 63);
+            this.labHash.Location = new System.Drawing.Point(64, 70);
             this.labHash.Name = "labHash";
             this.labHash.Size = new System.Drawing.Size(266, 12);
             this.labHash.TabIndex = 3;
@@ -176,7 +155,7 @@
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(3, 17);
+            this.label1.Location = new System.Drawing.Point(3, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 12);
             this.label1.TabIndex = 0;
@@ -186,7 +165,7 @@
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(3, 63);
+            this.label3.Location = new System.Drawing.Point(3, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 12);
             this.label3.TabIndex = 2;
@@ -196,7 +175,7 @@
             // btnReduction
             // 
             this.btnReduction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReduction.Location = new System.Drawing.Point(64, 193);
+            this.btnReduction.Location = new System.Drawing.Point(64, 215);
             this.btnReduction.Name = "btnReduction";
             this.btnReduction.Size = new System.Drawing.Size(130, 31);
             this.btnReduction.TabIndex = 6;
@@ -207,7 +186,7 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemove.Location = new System.Drawing.Point(200, 193);
+            this.btnRemove.Location = new System.Drawing.Point(200, 215);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(130, 31);
             this.btnRemove.TabIndex = 7;
@@ -215,21 +194,31 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // lbHistory
+            // label5
             // 
-            this.lbHistory.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lbHistory.FormattingEnabled = true;
-            this.lbHistory.ItemHeight = 12;
-            this.lbHistory.Location = new System.Drawing.Point(0, 25);
-            this.lbHistory.Name = "lbHistory";
-            this.lbHistory.Size = new System.Drawing.Size(139, 234);
-            this.lbHistory.TabIndex = 3;
-            this.lbHistory.SelectedIndexChanged += new System.EventHandler(this.lbHistory_SelectedIndexChanged);
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Location = new System.Drawing.Point(3, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 12);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "存档时间";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labSaveTime
+            // 
+            this.labSaveTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labSaveTime.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.labSaveTime, 2);
+            this.labSaveTime.Location = new System.Drawing.Point(64, 121);
+            this.labSaveTime.Name = "labSaveTime";
+            this.labSaveTime.Size = new System.Drawing.Size(266, 12);
+            this.labSaveTime.TabIndex = 5;
+            this.labSaveTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(3, 155);
+            this.label2.Location = new System.Drawing.Point(3, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 12);
             this.label2.TabIndex = 8;
@@ -241,17 +230,28 @@
             this.labCreateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labCreateTime.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.labCreateTime, 2);
-            this.labCreateTime.Location = new System.Drawing.Point(64, 155);
+            this.labCreateTime.Location = new System.Drawing.Point(64, 172);
             this.labCreateTime.Name = "labCreateTime";
             this.labCreateTime.Size = new System.Drawing.Size(266, 12);
             this.labCreateTime.TabIndex = 9;
             this.labCreateTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lbHistory
+            // 
+            this.lbHistory.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbHistory.FormattingEnabled = true;
+            this.lbHistory.ItemHeight = 12;
+            this.lbHistory.Location = new System.Drawing.Point(0, 25);
+            this.lbHistory.Name = "lbHistory";
+            this.lbHistory.Size = new System.Drawing.Size(139, 257);
+            this.lbHistory.TabIndex = 3;
+            this.lbHistory.SelectedIndexChanged += new System.EventHandler(this.lbHistory_SelectedIndexChanged);
+            // 
             // BackupMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 259);
+            this.ClientSize = new System.Drawing.Size(472, 282);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.lbHistory);
             this.Controls.Add(this.menuStrip1);

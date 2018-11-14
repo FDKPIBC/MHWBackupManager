@@ -54,6 +54,16 @@ namespace MHWBackup.Utils
         public string TimeTerms { get; set; }
 
         /// <summary>
+        /// 开始时间
+        /// </summary>
+        public DateTime StartTime { get; set; }
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public DateTime EndTime { get; set; }
+
+        /// <summary>
         /// 任务要求
         /// </summary>
         public string QuestRequest { get; set; }

@@ -10,10 +10,13 @@ namespace MHWBackup.Utils
     public class QuestManager
     {
         public List<Quest> Quests { get; private set; }
+
         /// <summary>
         /// 源html
         /// </summary>
         public string OriginHtml { get; private set; }
+
+        private object _lockobj;
 
         private HtmlDocument _questDocument;
 
@@ -21,6 +24,7 @@ namespace MHWBackup.Utils
         {
             _questDocument = new HtmlDocument();
             Quests = new List<Quest>();
+            _lockobj = new object();
         }
 
         public void LoadQuest()
@@ -34,25 +38,23 @@ namespace MHWBackup.Utils
                 var type = table.GetAttributeValue("table2", "table") == "table2" ? "活動任務" : "挑戰任務";
                 Quests.AddRange(table.SelectNodes("tbody/tr").Select(t => CreateQuest(t, type)));
             }
+            //Quests = Quests.OrderBy(t => t.StartTime).ToList();
         }
 
         public Quest CreateQuest(HtmlNode node, string type)
         {
             var quest = new Quest();
-            //var nodeClass = node.GetAttributeValue("class", string.Empty);
-            //if (nodeClass.StartsWith("t2"))
-            //{
-            //    quest.QuestType = "";
-            //}
-            //else
-            //{
-
-            //}
             quest.Image = node.SelectSingleNode(@"td[@class='image']/img").GetAttributeValue("src", string.Empty);
             quest.LevelLimit = node.SelectSingleNode(@"td[@class='level']/span").InnerText;
             var questNode = node.SelectSingleNode(@"td[@class='quest']");
             quest.Title = questNode.SelectSingleNode(@"div[@class='title']/span").InnerText;
             quest.TimeTerms = questNode.SelectSingleNode(@"p[@class='terms']").InnerText.ReplaceAndTrim("舉辦期間", "");
+            //暂时无卵用
+            //var timestr = quest.TimeTerms.Split('〜');
+            //var startTime = DateTime.Now.Year + "-" + timestr[0];
+            //var endTime = DateTime.Now.Year + "-" + timestr[1].Substring(1);
+            //quest.StartTime = DateTime.Parse(startTime);
+            //quest.EndTime = DateTime.Parse(endTime);
             quest.Content = questNode.SelectSingleNode(@"p[@class='txt']").InnerText;
             var popNode = questNode.SelectSingleNode(@"div[@class='pop']");
             quest.QuestMap = popNode.SelectSingleNode(@"ul/li[1]/span").InnerText;
